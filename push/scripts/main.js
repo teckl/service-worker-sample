@@ -229,7 +229,7 @@ IndexDBWrapperProto.transaction = function(e, s, t) {
  *
  */
 var API_KEY = "AIzaSyB0CnCPpiu-njIEzHMIFLZe-jbeROrTFxA",
-    PUSH_SERVER_URL = "http://teckl.org:5000";
+    PUSH_SERVER_URL = "https://teckl.org";
 window.addEventListener("UIReady", function() {
     var e = document.querySelector(".js-enable-push");
     e.addEventListener("change", function(e) {
