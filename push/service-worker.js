@@ -2,7 +2,8 @@
 
 importScripts('../push/scripts/indexdbwrapper.js');
 
-var YAHOO_WEATHER_API_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22london%2C%20uk%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+//var YAHOO_WEATHER_API_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22london%2C%20uk%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
+var YAHOO_WEATHER_API_ENDPOINT = 'https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20%28select%20woeid%20from%20geo.places%281%29%20where%20text%3D%22tokyo%2C%20jp%22%29&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys';
 var KEY_VALUE_STORE_NAME = 'key-value-store';
 
 var idb;
@@ -61,7 +62,7 @@ self.addEventListener('push', function(event) {
           throw new Error();
         }
 
-        var title = 'What\'s the weather like in London?';
+        var title = '東京の天気は ?';
         var message = data.query.results.channel.item.condition.text;
         var icon = data.query.results.channel.image.url ||
           'images/touch/chrome-touch-icon-192x192.png';
@@ -106,7 +107,7 @@ self.addEventListener('notificationclick', function(event) {
   if (event.notification.data) {
     // At the moment you cannot open third party URL's, a simple trick
     // is to redirect to the desired URL from a URL on your domain
-    var redirectUrl = '/redirect.html?redirect=' +
+    var redirectUrl = './redirect.html?redirect=' +
       event.notification.data.url;
     clients.openWindow(redirectUrl);
   } else {
@@ -114,7 +115,7 @@ self.addEventListener('notificationclick', function(event) {
       console.log('url = ' + url);
       // At the moment you cannot open third party URL's, a simple trick
       // is to redirect to the desired URL from a URL on your domain
-      var redirectUrl = '/redirect.html?redirect=' +
+      var redirectUrl = './redirect.html?redirect=' +
         url;
       return clients.openWindow(redirectUrl);
     }));
