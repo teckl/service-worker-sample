@@ -234,7 +234,7 @@ window.addEventListener("UIReady", function() {
     var e = document.querySelector(".js-enable-push");
     e.addEventListener("change", function(e) {
         e.target.checked ? subscribeDevice() : unsubscribeDevice()
-    }), "serviceWorker" in navigator ? navigator.serviceWorker.register("/push/service-worker.js", {
+    }), "serviceWorker" in navigator ? navigator.serviceWorker.register("../push/service-worker.js", {
         scope: "./"
     }).then(initialiseState) : (window.PushDemo.ui.showError("Ooops Service Workers aren't Supported", 'Service Workers aren\'t supported in this browser. For this demo be sure to use <a href="https://www.google.co.uk/chrome/browser/canary.html">Chrome Canary</a> or version 42.'), window.PushDemo.ui.showOnlyError())
 }), UIHandler.prototype.showError = function(e, s) {
